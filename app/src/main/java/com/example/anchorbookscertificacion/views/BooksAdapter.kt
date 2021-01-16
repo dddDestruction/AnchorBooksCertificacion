@@ -1,4 +1,4 @@
-package com.example.anchorbookscertificacion.viewmodel
+package com.example.anchorbookscertificacion.views
 
 import android.view.LayoutInflater
 import android.view.View
@@ -24,7 +24,9 @@ class BooksAdapter(private var lista: List<BooksEntity>) : RecyclerView.Adapter<
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BookHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.item_book_layout, parent, false)
-        return BookHolder(view)
+        return BookHolder(
+            view
+        )
     }
 
     override fun getItemCount(): Int {

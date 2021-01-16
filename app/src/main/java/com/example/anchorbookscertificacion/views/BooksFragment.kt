@@ -10,10 +10,9 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.anchorbookscertificacion.MainActivity
 import com.example.anchorbookscertificacion.R
-import com.example.anchorbookscertificacion.model.entities.BooksEntity
 import com.example.anchorbookscertificacion.viewmodel.AnchorBooksViewModel
-import com.example.anchorbookscertificacion.viewmodel.BooksAdapter
 import kotlinx.android.synthetic.main.fragment_books.view.*
 
 class BooksFragment : Fragment() {
@@ -64,7 +63,7 @@ class BooksFragment : Fragment() {
             Log.d("AAA", "Click en $it")
             val bundle = Bundle()
             bundle.putInt("id", it.id )
-            //Navigation.findNavController(this.requireView()).navigate(R.id.action_nav_clima_to_nav_tareas, bundle)
+            (activity as MainActivity).selectFragment(BookDetailFragment.newInstance(bundle))
         })
     }
 
@@ -73,11 +72,6 @@ class BooksFragment : Fragment() {
         fun newInstance(bundle: Bundle) =
             BooksFragment().apply {
                 arguments = Bundle().apply {
-                    /*
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-
-                     */
                 }
             }
     }
