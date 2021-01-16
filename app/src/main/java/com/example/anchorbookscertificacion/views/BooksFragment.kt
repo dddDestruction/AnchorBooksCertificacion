@@ -2,7 +2,6 @@ package com.example.anchorbookscertificacion.views
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -35,8 +34,6 @@ class BooksFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        Log.d("AAA", "En Fragmento BooksFragment")
         val root = inflater.inflate(R.layout.fragment_books, container, false)
         initObserver()
         initRecycler(root)
@@ -60,7 +57,6 @@ class BooksFragment : Fragment() {
     override fun onAttach(context: Context) {
         super.onAttach(context)
         adapter.selectedItem.observe(this, Observer {
-            Log.d("AAA", "Click en $it")
             val bundle = Bundle()
             bundle.putInt("id", it.id )
             (activity as MainActivity).selectFragment(BookDetailFragment.newInstance(bundle))

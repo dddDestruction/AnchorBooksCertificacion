@@ -2,10 +2,10 @@ package com.example.anchorbookscertificacion.views
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -33,8 +33,6 @@ class BookDetailFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         root = inflater.inflate(R.layout.fragment_book_detail, container, false)
-
-        Log.d("AAA", "id $bookId")
         initObservers()
         return root
     }
@@ -43,11 +41,10 @@ class BookDetailFragment : Fragment() {
         booksDetailViewModel = ViewModelProviders.of(this).get(AnchorBooksDetailViewModel::class.java)
         booksDetailViewModel.loadDetail(bookId)
         booksDetailViewModel.getBookDetail(bookId).observe(viewLifecycleOwner, Observer {
-            Log.d("AAA", "getBookDetail $it")
             if (it.size>0){
                 loadDetail(it.get(0))
             }else {
-                Log.d("AAA", "lista de detalles $it")
+                Toast.makeText(context, "Error en carga de datos", Toast.LENGTH_LONG).show()
             }
         })
     }
@@ -61,7 +58,6 @@ class BookDetailFragment : Fragment() {
             else -> View.GONE
         }
         root.comprarDetail.setOnClickListener{
-            Log.d("AAA", "Click comprar")
             val intent = Intent(Intent.ACTION_SEND)
             intent.type = "text/html"
             intent.putExtra(Intent.EXTRA_EMAIL, arrayOf("ventas@anchorBooks.cl"))
