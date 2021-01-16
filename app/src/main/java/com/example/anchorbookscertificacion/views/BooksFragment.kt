@@ -1,5 +1,6 @@
-package com.example.anchorbookscertificacion
+package com.example.anchorbookscertificacion.views
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -8,10 +9,18 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.anchorbookscertificacion.R
+import com.example.anchorbookscertificacion.model.entities.BooksEntity
 import com.example.anchorbookscertificacion.viewmodel.AnchorBooksViewModel
+import com.example.anchorbookscertificacion.viewmodel.BooksAdapter
+import kotlinx.android.synthetic.main.fragment_books.view.*
 
 class BooksFragment : Fragment() {
+
     private lateinit var booksViewModel: AnchorBooksViewModel
+    val adapter = BooksAdapter(mutableListOf())
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -30,13 +39,33 @@ class BooksFragment : Fragment() {
         // Inflate the layout for this fragment
         Log.d("AAA", "En Fragmento BooksFragment")
         val root = inflater.inflate(R.layout.fragment_books, container, false)
-        booksViewModel = ViewModelProviders.of(this).get(AnchorBooksViewModel::class.java)
-        booksViewModel.books.observe(viewLifecycleOwner, Observer {
-            Log.d("AAA", "Carga desde DB $it")
-        })
-        booksViewModel.load()
-        //booksViewModel.loadDetalle(1)
+        initObserver()
+        initRecycler(root)
         return root
+    }
+
+    fun initObserver(){
+        booksViewModel = ViewModelProviders.of(this).get(AnchorBooksViewModel::class.java)
+        booksViewModel.load()
+        booksViewModel.books.observe(viewLifecycleOwner, Observer {
+            adapter.update(it)
+        })
+    }
+
+    fun initRecycler(root:View){
+        val recyclerView = root.recyclerViewBooks
+        recyclerView.adapter = adapter
+        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        adapter.selectedItem.observe(this, Observer {
+            Log.d("AAA", "Click en $it")
+            val bundle = Bundle()
+            bundle.putInt("id", it.id )
+            //Navigation.findNavController(this.requireView()).navigate(R.id.action_nav_clima_to_nav_tareas, bundle)
+        })
     }
 
     companion object {
