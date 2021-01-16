@@ -13,5 +13,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         Log.d("AAA", "MainActivity")
         repository.loadData()
+        repository.loadDetalle(1)
     }
 }
