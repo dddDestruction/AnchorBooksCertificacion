@@ -10,7 +10,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/layout_cabecera"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/ACCENT_COLOR"
         android:padding="@dimen/dimen20dp">
 
         <ImageView
@@ -25,6 +26,8 @@
             android:id="@+id/tituloDetail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="@dimen/texto_grande"
+            android:textColor="@color/PRIMARY_TEXT"
             android:layout_marginStart="@dimen/dimen10dp"
             app:layout_constraintStart_toEndOf="@+id/portadaDetail"
             app:layout_constraintTop_toTopOf="parent" />
@@ -33,6 +36,8 @@
             android:id="@+id/subTituloDetail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="@dimen/texto_mediano"
+            android:textColor="@color/SECONDARY_TEXT"
             android:layout_marginStart="@dimen/dimen10dp"
             app:layout_constraintStart_toEndOf="@+id/portadaDetail"
             app:layout_constraintTop_toBottomOf="@+id/tituloDetail" />
@@ -41,6 +46,8 @@
             android:id="@+id/precioDetail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="@dimen/texto_grande"
+            android:textColor="@color/PRIMARY_TEXT"
             app:layout_constraintStart_toEndOf="@+id/unidadPrecioDetail"
             app:layout_constraintTop_toBottomOf="@+id/subTituloDetail" />
 
@@ -48,6 +55,8 @@
             android:id="@+id/unidadPrecioDetail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="@dimen/texto_grande"
+            android:textColor="@color/PRIMARY_TEXT"
             android:layout_marginStart="@dimen/dimen10dp"
             android:text="@string/currency"
             app:layout_constraintStart_toEndOf="@+id/portadaDetail"
@@ -58,7 +67,7 @@
             android:id="@+id/shippingDetail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_baseline_local_shipping_24"
+            android:src="@drawable/ic_baseline_local_shipping_small"
             app:layout_constraintBottom_toBottomOf="@+id/precioDetail"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/precioDetail"
@@ -77,6 +86,8 @@
             android:id="@+id/paginasDetail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="@dimen/texto_mediano"
+            android:textColor="@color/SECONDARY_TEXT"
             android:layout_marginEnd="@dimen/dimen10dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/portadaDetail" />
@@ -86,6 +97,8 @@
             android:id="@+id/paginas"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="@dimen/texto_mediano"
+            android:textColor="@color/SECONDARY_TEXT"
             android:layout_marginStart="@dimen/dimen10dp"
             android:text="@string/pages"
             app:layout_constraintStart_toEndOf="@+id/paginasDetail"

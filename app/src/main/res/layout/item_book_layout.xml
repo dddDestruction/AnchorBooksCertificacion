@@ -22,6 +22,8 @@
             android:id="@+id/titulo"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:textSize="@dimen/texto_grande"
+            android:textColor="@color/PRIMARY_TEXT"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/portada"
             app:layout_constraintTop_toTopOf="parent" />
@@ -29,6 +31,8 @@
         <TextView
             android:id="@+id/subTitulo"
             android:layout_width="0dp"
+            android:textSize="@dimen/texto_mediano"
+            android:textColor="@color/SECONDARY_TEXT"
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/portada"

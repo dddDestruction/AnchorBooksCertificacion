@@ -2,4 +2,6 @@
 <resources>
     <dimen name="dimen10dp">10dp</dimen>
     <dimen name="dimen20dp">20dp</dimen>
+    <dimen name="texto_grande">20sp</dimen>
+    <dimen name="texto_mediano">15sp</dimen>
 </resources>
