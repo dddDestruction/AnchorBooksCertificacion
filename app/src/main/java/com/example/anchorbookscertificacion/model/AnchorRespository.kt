@@ -1,15 +1,25 @@
 package com.example.anchorbookscertificacion.model
 
+import android.content.Context
 import android.util.Log
+import androidx.lifecycle.LiveData
 import com.example.anchorbookscertificacion.model.api.RetrofitClient
+import com.example.anchorbookscertificacion.model.db.AnchorDBManager
+import com.example.anchorbookscertificacion.model.entities.BooksDetailEntity
 import com.example.anchorbookscertificacion.model.pojos.Book
 import com.example.anchorbookscertificacion.model.pojos.BookDetail
+import kotlinx.coroutines.CoroutineScope
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class AnchorRespository : IAnchorRepository {
+class AnchorRespository(context: Context, scope: CoroutineScope) : IAnchorRepository {
+
     val retrofit = RetrofitClient.retrofitInstance()
+    val anchorManager = AnchorDBManager(context, scope)
+    var books = anchorManager.getBooks()
+    val mapper = PojoToEntityMapper()
+
     override fun loadData() {
         Log.d("AAA", "loadData")
         val call = retrofit.getBooks()
@@ -21,7 +31,7 @@ class AnchorRespository : IAnchorRepository {
                 Log.d("AAA", "response " + response)
                 if (response.body() != null){
                     Log.d("AAA", "libros " + response.body())
-                    //agendaManager.insertarClimas(repoUtil.mapperApiClima(response.body()!!))
+                    anchorManager.insertBooks(mapper.booksToEntityMapper(response.body()!!))
                 }
             }
 
@@ -42,7 +52,7 @@ class AnchorRespository : IAnchorRepository {
                 Log.d("AAA", "response " + response)
                 if (response.body() != null){
                     Log.d("AAA", "libros " + response.body())
-                    //agendaManager.insertarClimas(repoUtil.mapperApiClima(response.body()!!))
+                    anchorManager.insertBookDetail(mapper.booksDetailToEntityMapper(response.body()!!))
                 }
             }
 
@@ -50,5 +60,9 @@ class AnchorRespository : IAnchorRepository {
                 Log.d("AAA", "onFailure " + t)
             }
         })
+    }
+
+    override fun getBookDetailInDB(id: Int): LiveData<List<BooksDetailEntity>> {
+        return anchorManager.getBookDetail(id)
     }
 }
