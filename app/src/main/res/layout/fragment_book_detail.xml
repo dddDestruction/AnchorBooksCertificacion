@@ -1,10 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".views.BookDetailFragment">
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout_cabecera"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/dimen20dp">
+
+        <ImageView
+            android:id="@+id/portadaDetail"
+            android:layout_marginEnd="@dimen/dimen20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tituloDetail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen10dp"
+            app:layout_constraintStart_toEndOf="@+id/portadaDetail"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/subTituloDetail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen10dp"
+            app:layout_constraintStart_toEndOf="@+id/portadaDetail"
+            app:layout_constraintTop_toBottomOf="@+id/tituloDetail" />
+
+        <TextView
+            android:id="@+id/precioDetail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@+id/unidadPrecioDetail"
+            app:layout_constraintTop_toBottomOf="@+id/subTituloDetail" />
+
+        <TextView
+            android:id="@+id/unidadPrecioDetail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen10dp"
+            android:text="@string/currency"
+            app:layout_constraintStart_toEndOf="@+id/portadaDetail"
+            app:layout_constraintTop_toBottomOf="@+id/subTituloDetail" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <ImageView
+            android:id="@+id/shippingDetail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_baseline_local_shipping_24"
+            app:layout_constraintBottom_toBottomOf="@+id/precioDetail"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/precioDetail"
+            app:layout_constraintTop_toTopOf="@+id/precioDetail" />
+
+        <Button
+            android:id="@+id/comprarDetail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/buy_now"
+            app:layout_constraintBottom_toBottomOf="@+id/portadaDetail"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/portadaDetail" />
+
+        <TextView
+            android:id="@+id/paginasDetail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/dimen10dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/portadaDetail" />
+
+
+        <TextView
+            android:id="@+id/paginas"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen10dp"
+            android:text="@string/pages"
+            app:layout_constraintStart_toEndOf="@+id/paginasDetail"
+            app:layout_constraintTop_toTopOf="@+id/paginasDetail" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>

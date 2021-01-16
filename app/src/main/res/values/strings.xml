@@ -2,4 +2,7 @@
     <string name="app_name">AnchorBooksCertificacion</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="buy_now">Comprar Ahora</string>
+    <string name="pages">páginas</string>
+    <string name="currency">$</string>
 </resources>

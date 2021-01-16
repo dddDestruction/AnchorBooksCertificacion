@@ -12,6 +12,8 @@ import com.example.anchorbookscertificacion.R
 import com.example.anchorbookscertificacion.model.entities.BooksDetailEntity
 import com.example.anchorbookscertificacion.viewmodel.AnchorBooksDetailViewModel
 import com.example.anchorbookscertificacion.viewmodel.AnchorBooksViewModel
+import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.fragment_book_detail.view.*
 
 class BookDetailFragment : Fragment() {
 
@@ -50,7 +52,22 @@ class BookDetailFragment : Fragment() {
     }
 
     fun loadDetail(bookDetail: BooksDetailEntity){
-
+        root.tituloDetail.text = bookDetail.title
+        root.subTituloDetail.text = bookDetail.author
+        root.precioDetail.text = bookDetail.price.toString()
+        root.shippingDetail.visibility = when{
+            bookDetail.delivery -> View.VISIBLE
+            else -> View.GONE
+        }
+        root.comprarDetail.setOnClickListener{
+            Log.d("AAA", "Click comprar")
+        }
+        Picasso.get()
+            .load(bookDetail.imageLink)
+            .resize(250, 250)
+            .centerCrop()
+            .into(root.portadaDetail)
+        root.paginasDetail.text = bookDetail.pages.toString()
     }
 
     companion object {
